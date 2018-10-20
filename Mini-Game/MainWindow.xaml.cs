@@ -21,22 +21,13 @@ namespace Mini_Game
     /// 
     public partial class MainWindow : Window
     {
-
+        static int score = 0;
+        static int currentQuiz = 0;
+        static int countQuiz = 0;
         public MainWindow()
         {
             InitializeComponent();
-
-            //Quiz myQuizes1 = new Quiz(1, Resource.quiz1, false, Resource.Manchester_United, Resource.Liverpool);
-            //Quiz myQuizes2 = new Quiz(2, Resource.quiz2, true, Resource.Arsenal, Resource.Manchester_United);
-            //myQuizes[3] = new Quiz(3, Resource.quiz3, false, Resource.Chelsea, Resource.Arsenal);
-            //myQuizes[4] = new Quiz(4, Resource.quiz4, true, Resource.Southampton, Resource.Everton);
-            //myQuizes[5] = new Quiz(5, Resource.quiz5, false, Resource.Real_Madrid, Resource.AC_Milan);
-            //myQuizes[6] = new Quiz(6, Resource.quiz6, true, Resource.Arsenal, Resource.Liverpool);
-            //myQuizes[7] = new Quiz(7, Resource.quiz7, true, Resource.Manchester_City, Resource.Barcelona);
-            //myQuizes[8] = new Quiz(8, Resource.quiz8, false, Resource.Manchester_United, Resource.Manchester_City);
-            //myQuizes[9] = new Quiz(9, Resource.quiz9, false, Resource.Arsenal, Resource.Manchester_United);
-            //myQuizes[10] = new Quiz(10, Resource.quiz10, true, Resource.Manchester_United, Resource.Liverpool);
-
+            
         }
         List<Quiz> myQuiz = new List<Quiz>
 {
@@ -61,8 +52,20 @@ namespace Mini_Game
 
         private void buttonChoice1_Click(object sender, RoutedEventArgs e)
         {
+            countQuiz++;
+            if (countQuiz > 10)
+                
+
+            if (myQuiz[currentQuiz]._correctChoice == false)
+            {
+                score++;
+                txtShowScore.Text = score.ToString();
+            }
+
             Random rnd = new Random();
             int i = rnd.Next(0,9);
+
+
             txtbckShowQuiz.Text = myQuiz[i]._quiz;
             imgChoice1.BeginInit();
             imgChoice1.Source = new BitmapImage(new Uri(myQuiz[i]._uri1, UriKind.RelativeOrAbsolute));
@@ -71,10 +74,19 @@ namespace Mini_Game
             imgChoice2.BeginInit();
             imgChoice2.Source = new BitmapImage(new Uri(myQuiz[i]._uri2, UriKind.RelativeOrAbsolute));
             imgChoice2.EndInit();
+            currentQuiz = i;
         }
 
         private void buttonChoice2_Click(object sender, RoutedEventArgs e)
         {
+            countQuiz++;
+
+            if (myQuiz[currentQuiz]._correctChoice == true)
+            {
+                score++;
+                txtShowScore.Text = score.ToString();
+            }
+
             Random rnd = new Random();
             int i = rnd.Next(0, 9);
             txtbckShowQuiz.Text = myQuiz[i]._quiz;
@@ -85,6 +97,7 @@ namespace Mini_Game
             imgChoice2.BeginInit();
             imgChoice2.Source = new BitmapImage(new Uri(myQuiz[i]._uri2, UriKind.RelativeOrAbsolute));
             imgChoice2.EndInit();
+            currentQuiz = i;
         }
     }
 
