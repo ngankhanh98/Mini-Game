@@ -24,6 +24,8 @@ namespace Mini_Game
         static int score = 0;
         static int currentQuiz = 0;
         static int countQuiz = 0;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace Mini_Game
             }
 
             Random rnd = new Random();
-            int i = rnd.Next(0,9);
+            int i = rnd.Next(0, 9);
 
 
             txtbckShowQuiz.Text = myQuiz[i]._quiz;
@@ -84,6 +86,9 @@ namespace Mini_Game
             imgChoice2.EndInit();
             currentQuiz = i;
         }
+
+
+
 
         private void buttonChoice2_Click(object sender, RoutedEventArgs e)
         {
@@ -106,8 +111,8 @@ namespace Mini_Game
                 score++;
                 txtShowScore.Text = score.ToString();
             }
-         
-            Random rnd = new Random();
+
+            var rnd = new Random();
             int i = rnd.Next(0, 9);
             txtbckShowQuiz.Text = myQuiz[i]._quiz;
             imgChoice1.BeginInit();
