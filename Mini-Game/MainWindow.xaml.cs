@@ -27,7 +27,6 @@ namespace Mini_Game
         public MainWindow()
         {
             InitializeComponent();
-            
         }
         List<Quiz> myQuiz = new List<Quiz>
 {
@@ -54,8 +53,17 @@ namespace Mini_Game
         {
             countQuiz++;
             if (countQuiz > 10)
-                
-
+            {
+                ChildWindow childWindow = new ChildWindow();
+                childWindow.txtFinalScore.Text = score.ToString() + "/10";
+                childWindow.ShowDialog();
+                score = 0;
+                txtShowScore.Text = score.ToString();
+                currentQuiz = 0;
+                countQuiz = 0;
+                return;
+            }
+            
             if (myQuiz[currentQuiz]._correctChoice == false)
             {
                 score++;
@@ -80,13 +88,25 @@ namespace Mini_Game
         private void buttonChoice2_Click(object sender, RoutedEventArgs e)
         {
             countQuiz++;
+            if (countQuiz > 10)
+            {
+                ChildWindow childWindow = new ChildWindow();
+                childWindow.txtFinalScore.Text = score.ToString() + "/10";
+                childWindow.ShowDialog();
+                score = 0;
+                score = 0;
+                txtShowScore.Text = score.ToString();
+                currentQuiz = 0;
+                countQuiz = 0;
+                return;
+            }
 
             if (myQuiz[currentQuiz]._correctChoice == true)
             {
                 score++;
                 txtShowScore.Text = score.ToString();
             }
-
+         
             Random rnd = new Random();
             int i = rnd.Next(0, 9);
             txtbckShowQuiz.Text = myQuiz[i]._quiz;
@@ -98,6 +118,8 @@ namespace Mini_Game
             imgChoice2.Source = new BitmapImage(new Uri(myQuiz[i]._uri2, UriKind.RelativeOrAbsolute));
             imgChoice2.EndInit();
             currentQuiz = i;
+
+            
         }
     }
 
